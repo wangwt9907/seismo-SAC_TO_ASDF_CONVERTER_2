@@ -1,0 +1,28 @@
+#This program is used to convert SAC file to ASDF file using Parallel ASDF I/O API.
+
+#Developer: Wenjie Lei(lei@princeton.edu)
+            James Smith(jas11@princeton.edu)
+
+#Bug report: email either of the guys listed above. They will be more than happy to see the problems.
+
+Dependency:
+Adios-1.5.0
+
+How to use:
+1. set up the "PAR_FILE" in the home(the home of the code) directory, which includes:
+  a) DEBUG: debug mode
+  b) Direcotry info: CMT, STATION, SAC file dir, etc
+  c) Period Band
+  d) Specify the three components name you want to convert.
+
+2. make clean --> make clean
+
+3. ./sac_to_asdf
+
+Notes:
+1. The code uses Parallel ASDF I/O API. But now the converter only works on one processor. Since now the ASDF I/O API is independent of number of processors, so do not worry about the converted file won't work on parallel way(if you use the same Parellel ASDF I/O API)
+
+2. You can find complete Parallel ASDF I/O API in src/asdf_subs.f90. If you want to use these API, include the file in your source code.
+
+TODO:
+1. The infomation in the ASDF container needs to be improved(especially the time info is a little messed up here...will solve this soon!) You can find the contatiner information in src/asdf_data.f90

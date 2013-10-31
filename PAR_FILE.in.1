@@ -1,0 +1,29 @@
+# -------------------------------------------------------------
+#
+# This is the parameter file for the ASDF_CONVERTER package which   
+# is a file format desigend for massive data sets on HPC systems.
+#
+# -------------------------------------------------------------
+#
+#
+DEBUG                     = .TRUE.
+CHECK_STATION             = .TRUE.
+CHECK_CMT                 = .FALSE.
+CHECK_VAR                 = .TRUE.
+
+# read CMTSOLUTION and STATIONS files
+CMT_DIR                   = CMTs
+STATION_DIR               = STATIONS
+OBSD_DIR                  = /tigress/lei/backup/ASDF/PROCESSED
+SYNT_DIR                  = /tigress/lei/backup/ASDF/PROCESSED
+OBSD_FILE_PREFIX          = obs.sac
+SYNT_FILE_PREFIX          = sem.sac
+
+#Period info
+MIN_PERIOD                = 27.0
+MAX_PERIOD                = 60.0
+
+#COMP
+COMP_ALL_1                = LHR
+COMP_ALL_2                = LHT
+COMP_ALL_3                = LHZ
