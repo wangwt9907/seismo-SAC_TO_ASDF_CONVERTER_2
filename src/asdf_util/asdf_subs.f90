@@ -225,7 +225,7 @@ end subroutine define_asdf_data
 !! \param file_name The file will be saved as file_name.
 !! \param comm Size of the group associated with the MPI communicator
 
-subroutine write_asdf_file(asdf_fn, my_asdf, rank, nproc, comm, ierr)
+subroutine write_asdf_file(asdf_fn, my_asdf, adios_group, rank, nproc, comm, ierr)
 
   use asdf_data
   use adios_write_mod
@@ -245,16 +245,17 @@ subroutine write_asdf_file(asdf_fn, my_asdf, rank, nproc, comm, ierr)
 	!print *,"Write out file: ", trim(asdf_fn)
   !call adios_allocate_buffer (600, adios_err)
 	!print *,"Write out file: ", trim(asdf_fn)
-  call adios_declare_group (adios_group, "EVENTS", "iter", 1, adios_err)
+  !call adios_declare_group (adios_group, "EVENTS", "iter", 1, adios_err)
 	!print *,"Write out file: ", trim(asdf_fn)
-  call adios_select_method (adios_group, "MPI", "", "", adios_err)
+  !call adios_select_method (adios_group, "MPI", "", "", adios_err)
 
   !calculate size
   adios_groupsize = 0
 	print *,"Write out file: ", trim(asdf_fn)
+  print *, "Define adios data structure..."
   call define_asdf_data (adios_group, adios_groupsize, my_asdf,&
 						rank, nproc, comm, ierr)
-  print *, "define finished!"
+  !print *, "define finished!"
   call adios_open (adios_handle, "EVENTS", asdf_fn, "w", comm, adios_err)
   call adios_group_size (adios_handle, adios_groupsize, adios_totalsize, adios_err)
 
@@ -264,6 +265,10 @@ subroutine write_asdf_file(asdf_fn, my_asdf, rank, nproc, comm, ierr)
 
   !adios close
   call adios_close(adios_handle, adios_err)
+  !print *, "adios_err", adios_err
+  if(adios_err.eq.0) then
+    print *, "Finish writing file:", trim(asdf_fn)
+  endif
   !call adios_finalize (rank, adios_err)
 
 end subroutine write_asdf_file

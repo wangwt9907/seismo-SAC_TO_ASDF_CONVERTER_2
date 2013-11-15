@@ -5,3 +5,5 @@ TEST
 *.mod
 *.swo
 *.swp
+*.swn
+sac_to_asdf

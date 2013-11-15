@@ -25,11 +25,13 @@ subroutine read_parameter_file()
     read(IIN,*)
   enddo
 
-
 	read(IIN,3) junk, DEBUG
 	read(IIN,3) junk, CHECK_STATION
 	read(IIN,3) junk, CHECK_CMT
 	read(IIN,3) junk, CHECK_VAR
+	read(IIN,*)
+	read(IIN,*)
+  read(IIN,2) junk, event_name
 	read(IIN,*)
 	read(IIN,*)
 	read(IIN,2) junk, CMT_DIR
@@ -195,8 +197,8 @@ subroutine generate_station_list(station_list, nw_list, lat_list, &
 			obsd_file=trim(station_list(i))//"."//trim(nw_list(i))//"."&
 					//trim(comp_all(j))//"."//trim(obsd_file_prefix)
 			
-			synt_file=trim(SYNT_DIR)//"/"//trim(event_name)//"/"//trim(synt_file)
-			obsd_file=trim(OBSD_DIR)//"/"//trim(event_name)//"/"//trim(obsd_file)
+			synt_file=trim(SYNT_DIR)//"/"//trim(synt_file)
+			obsd_file=trim(OBSD_DIR)//"/"//trim(obsd_file)
 
 			inquire(file=synt_file, exist=synt_exist)
 			inquire(file=obsd_file, exist=obsd_exist)
@@ -357,7 +359,7 @@ subroutine copy_sac_to_asdf_data(my_asdf, station_list, nw_list,&
 			loc=3*(i-1)+j
 			if(exist_list(loc).eq.1)then
 				asdf_index=asdf_index+1
-				fn=trim(data_dir)//"/"//trim(event_name)//"/"//trim(station_list(i))&
+				fn=trim(data_dir)//"/"//trim(station_list(i))&
 						//"."//trim(nw_list(i))//"."//trim(comp_all(j))//"."//trim(prefix)
 
 				print *,"Read in fn:", trim(fn)

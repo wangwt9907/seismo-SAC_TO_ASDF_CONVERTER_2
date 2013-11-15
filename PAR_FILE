@@ -11,11 +11,14 @@ CHECK_STATION             = .TRUE.
 CHECK_CMT                 = .FALSE.
 CHECK_VAR                 = .TRUE.
 
+#event
+event_name                = 200801151752A
+
 # read CMTSOLUTION and STATIONS files
 CMT_DIR                   = CMTs
 STATION_DIR               = STATIONS
-OBSD_DIR                  = DATA 
-SYNT_DIR                  = DATA 
+OBSD_DIR                  = DATA/200801151752A 
+SYNT_DIR                  = DATA/200801151752A 
 OBSD_FILE_PREFIX          = obs
 SYNT_FILE_PREFIX          = sem
 

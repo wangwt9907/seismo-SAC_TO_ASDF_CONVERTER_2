@@ -36,6 +36,8 @@ module main_parameter
 
 	logical :: DEBUG, CHECK_STATION, CHECK_CMT, CHECK_VAR
 
+  character(len=13) :: event_name
+
 	character(len=150) :: CMT_DIR, STATION_DIR, OBSD_DIR, SYNT_DIR
 	character(len=32)	 :: OBSD_FILE_PREFIX, SYNT_FILE_PREFIX
 	real :: MIN_PERIOD, MAX_PERIOD
